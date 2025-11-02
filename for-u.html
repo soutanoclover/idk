@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>just for u</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: "Quicksand", sans-serif;
+  background: linear-gradient(180deg,#ffe6eb 0%,#ffc2d1 100%);
+  text-align: center;
+  padding: 50px;
+  min-height: 100vh;
+}
+.instruction {
+  font-size: 22px;
+  color: #c71585;
+  margin-bottom: 30px;
+  animation: blink 2s infinite;
+}
+@keyframes blink {50%{opacity:0.5}}
+.heart img {width:180px;cursor:pointer;transition:transform .4s ease,opacity 1s ease}
+.heart img:hover{transform:scale(1.1)}
+.heart img.hide{opacity:0;transform:scale(0)}
+.message {
+  display:none;
+  background:white;
+  padding:30px;
+  border-radius:20px;
+  margin-top:40px;
+  box-shadow:0 0 20px rgba(0,0,0,.15);
+  width:80%;
+  margin:auto;
+  line-height:1.6;
+  text-align:left;
+  animation:fadeIn 1s ease forwards;
+}
+@keyframes fadeIn {from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.message h1 {font-family:'Cinzel',serif;font-size:40px;letter-spacing:1.2px;color:#b30059;text-align:center}
+.typewriter {white-space:pre-wrap;overflow:hidden;border-right:3px solid #b30059;font-size:18px;color:#333;line-height:1.6;animation:caretBlink .7s infinite}
+@keyframes caretBlink{50%{border-color:transparent}}
+.sincere{margin-top:20px}
+.sincere p{margin:0;font-size:18px}
+</style>
+</head>
+<body>
+<p class="instruction">Click the heart!</p>
+<div class="container">
+  <div class="heart">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Love_Heart_SVG.svg" alt="heart">
+  </div>
+  <div class="message">
+    <h1>Dear Tody,</h1>
+    <p class="typewriter"></p>
+    <div class="sincere" style="display:none;">
+      <p style="font-weight:bold;">With Love,</p>
+      <p>kak nisaa🍀</p>
+    </div>
+  </div>
+</div>
+<script>
+const heart=document.querySelector(".heart img");
+const messageBox=document.querySelector(".message");
+const textEl=document.querySelector(".typewriter");
+const signature=document.querySelector(".sincere");
+const text=`haii dyy, how's ur day? i hope u always have a good day. dari info yang beredar, kakak denger-denger besok udah mulai tka ya? kakak gatau pasti sih tdy dapet jadwalnya kapan dan tdy ikutan tka ato nggak. tapi yang pasti disini kakak pengen nyemangatin tdy aja...\n\nkakak tau kita udah ga kayak dulu lagi, tapi jujur aja, rasa peduli kakak ke tdy ga pernah hilang dan pengen liat tdy berhasil. tka ini mungkin cuma satu tahap kecil dari banyak hal besar yang bakal tdy capai nanti, tapi kakak tau perjuangan tdy buat sampe ke titik ini ga mudah.\n\njadi jangan ragu sama diri sendiri, ya. tdy punya kemampuan, punya semangat, dan punya tekad yang kuat. nikmatin prosesnya, percaya sama kemampuan yang udah tdy bangun selama ini. hasil memang penting, tapi usaha dan ketenangan tdy jauh lebih berharga.\n\nkakak selalu doain yang terbaik buat tdy, dari jauh. semoga tka ny lancar, hasilnya memuaskan, dan tdy bisa dapetin apa yang tdy impikan. i trust u, dyy.. and i'm so proud of u... apapun hasilnya nanti, tdy udah luar biasa. semangat terus, yaaa...`;
+heart.addEventListener("click",()=>{
+  heart.classList.add("hide");
+  setTimeout(()=>{
+    heart.style.display="none";
+    messageBox.style.display="block";
+    typeWriterEffect(text,textEl,15,()=>{signature.style.display="block";});
+  },800);
+});
+function typeWriterEffect(text,element,speed,callback){
+  let i=0;
+  (function typing(){
+    if(i<text.length){
+      element.textContent+=text.charAt(i);
+      i++;
+      setTimeout(typing,speed);
+    } else {
+      element.style.borderRight="none";
+      if(callback)callback();
+    }
+  })();
+}
+</script>
+</body>
+</html>
